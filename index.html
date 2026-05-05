@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imazighen: The Free People of Morocco</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f5efe6;
+    --deep-earth: #10242b;
+    --terracotta: #CC0033;
+    --clay: #8b4513;
+    --gold: #FFE513;
+    --olive: #99CC33;
+    --sky: #0099CC;
+    --cream: #faf6f0;
+    --light-sand: #ede5d8;
+    --text-dark: #1e1410;
+    --text-mid: #4a3728;
+    --text-light: #7a6254;
+    --flag-blue: #0099CC;
+    --flag-green: #99CC33;
+    --flag-yellow: #FFE513;
+    --flag-red: #CC0033;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--deep-earth);
+    color: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tifinagh-deco {
+    font-size: 5rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: 0; right: -20px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .site-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  header h1 span { color: var(--gold); font-style: italic; }
+
+  .header-sub {
+    font-size: 1rem;
+    color: #c9b99f;
+    max-width: 640px;
+    margin-top: 12px;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .tifinagh-banner {
+    background: var(--terracotta);
+    color: var(--cream);
+    text-align: center;
+    padding: 8px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 0.4em;
+    overflow: hidden;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--cream);
+    border-bottom: 2px solid var(--light-sand);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(44,30,18,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.22s ease;
+    margin-bottom: -2px;
+  }
+
+  .tab-btn:hover { color: var(--terracotta); background: var(--light-sand); }
+  .tab-btn.active { color: var(--terracotta); border-bottom-color: var(--terracotta); font-weight: 700; }
+
+  /* PANELS */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .content-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* HERO */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 70px;
+  }
+
+  .hero-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--deep-earth);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  .hero-text p { margin-bottom: 16px; color: var(--text-mid); }
+
+  /* STAT BLOCK */
+  .stat-block {
+    background: var(--deep-earth);
+    color: var(--cream);
+    padding: 36px 32px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-block::before {
+    content: 'ⵉⵎⴰⵣⵉⵖⴻⵏ';
+    position: absolute;
+    top: -10px; right: -10px;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.1;
+    letter-spacing: 0.2em;
+  }
+
+  .stat-item {
+    margin-bottom: 26px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid rgba(201,150,62,0.25);
+  }
+
+  .stat-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    color: var(--gold);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #c9b99f;
+    margin: 4px 0 8px;
+  }
+
+  .stat-note { font-size: 0.82rem; color: #b3a090; line-height: 1.5; }
+
+  /* HEADINGS */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+  }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--deep-earth);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--light-sand);
+  }
+
+  h3.sub-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--deep-earth);
+    margin: 36px 0 12px;
+    font-style: italic;
+  }
+
+  p { margin-bottom: 16px; color: var(--text-mid); }
+  strong { color: var(--text-dark); font-weight: 700; }
+
+  /* CALLOUT */
+  .callout {
+    border-left: 4px solid var(--terracotta);
+    background: var(--light-sand);
+    padding: 22px 26px;
+    margin: 32px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout.gold { border-left-color: var(--gold); }
+  .callout.olive { border-left-color: var(--olive); }
+  .callout.sky { border-left-color: var(--sky); }
+
+  .callout-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+
+  .callout.gold .callout-label { color: var(--clay); }
+  .callout.olive .callout-label { color: var(--olive); }
+  .callout.sky .callout-label { color: var(--sky); }
+  .callout p { margin: 0; font-style: italic; color: var(--text-mid); }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    margin: 28px 0;
+  }
+
+  .card {
+    background: var(--sand);
+    border: 1px solid var(--light-sand);
+    padding: 26px 22px;
+    border-radius: 2px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(44,30,18,0.1); }
+  .card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .card-icon.roman {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--flag-blue);
+    color: white;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .card:nth-child(2) .card-icon.roman { background: var(--flag-green); color: var(--deep-earth); }
+  .card:nth-child(3) .card-icon.roman { background: var(--flag-yellow); color: var(--deep-earth); }
+  .card:nth-child(4) .card-icon.roman { background: var(--flag-red); }
+
+  .card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--deep-earth);
+    margin-bottom: 8px;
+  }
+
+  .card p { font-size: 0.88rem; margin: 0; color: var(--text-light); line-height: 1.65; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding: 10px 0; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--light-sand);
+  }
+
+  .tl-item {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 34px;
+    position: relative;
+  }
+
+  .tl-dot {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--deep-earth);
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1;
+  }
+
+  .tl-content { flex: 1; padding-top: 10px; }
+
+  .tl-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--deep-earth);
+    margin-bottom: 5px;
+  }
+
+  .tl-content p { font-size: 0.88rem; margin: 0; color: var(--text-light); }
+
+  /* TABLE */
+  .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.87rem;
+  }
+
+  .policy-table th {
+    background: var(--deep-earth);
+    color: var(--gold);
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .policy-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--light-sand);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .policy-table tr:nth-child(even) td { background: var(--sand); }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .badge-red { background: #fde8e0; color: var(--terracotta); }
+  .badge-gold { background: #fdf3de; color: var(--clay); }
+  .badge-green { background: #e8f0de; color: var(--olive); }
+
+  /* BLOCKQUOTE */
+  blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--deep-earth);
+    border-left: 5px solid var(--gold);
+    padding: 20px 30px;
+    margin: 40px 0;
+    background: var(--light-sand);
+    line-height: 1.65;
+  }
+
+  blockquote cite {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    font-style: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 12px;
+  }
+
+  /* TWO-COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin: 28px 0;
+  }
+
+  /* ACCENT BAR */
+  .accent-bar {
+    background: var(--terracotta);
+    color: var(--cream);
+    padding: 26px 34px;
+    margin: 38px 0;
+    border-radius: 2px;
+  }
+
+  .accent-bar p { color: rgba(255,255,255,0.9); margin: 0; font-size: 0.93rem; }
+  .accent-bar strong { color: #fff; }
+
+  /* PERSONAL NOTE */
+  .personal-note {
+    background: var(--flag-blue);
+    color: var(--deep-earth);
+    padding: 44px 48px;
+    margin: 50px 0;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .personal-note::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    color: var(--gold);
+    opacity: 0.07;
+    line-height: 1;
+  }
+
+  .personal-note p { color: var(--deep-earth); margin-bottom: 14px; font-size: 0.97rem; }
+  .personal-note p:last-child { margin-bottom: 0; }
+  .personal-note em { color: var(--deep-earth); }
+  .note-author {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  /* DIALECT CARDS */
+  .dialect-regions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 26px 0;
+  }
+
+  .dialect-card {
+    background: var(--deep-earth);
+    color: var(--cream);
+    padding: 24px 20px;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  .dialect-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    margin-bottom: 3px;
+    font-style: italic;
+  }
+
+  .dialect-native {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: #c9b99f;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .dialect-card p { font-size: 0.83rem; color: #c9b99f; margin: 0; line-height: 1.6; }
+
+  /* TIFINAGH DISPLAY */
+  .tif-display {
+    text-align: center;
+    background: var(--deep-earth);
+    padding: 36px 40px;
+    margin: 26px 0;
+    border-radius: 2px;
+  }
+
+  .tif-main {
+    font-size: 3.2rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .tif-trans {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c9b99f;
+  }
+
+  /* SPEAKER PROFILES */
+  .speaker-profile {
+    background: var(--sand);
+    border: 1px solid var(--light-sand);
+    border-left: 5px solid var(--terracotta);
+    padding: 26px 28px;
+    margin: 22px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .speaker-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+
+  .speaker-profile h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep-earth);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .speaker-profile p { margin: 0; font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* RACIALIZATION PHASES */
+  .race-phase {
+    background: var(--sand);
+    border: 1px solid var(--light-sand);
+    padding: 24px 26px;
+    margin: 20px 0;
+    border-radius: 2px;
+    border-left: 5px solid var(--terracotta);
+  }
+
+  .race-phase.p2 { border-left-color: var(--clay); }
+  .race-phase.p3 { border-left-color: var(--gold); }
+  .race-phase.p4 { border-left-color: var(--olive); }
+
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .phase-era {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    flex-shrink: 0;
+  }
+
+  .race-phase.p2 .phase-era { color: var(--clay); }
+  .race-phase.p3 .phase-era { color: var(--clay); }
+  .race-phase.p4 .phase-era { color: var(--olive); }
+
+  .phase-header h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep-earth);
+  }
+
+  .race-phase p { margin: 0; font-size: 0.9rem; color: var(--text-mid); line-height: 1.72; }
+
+  /* SOURCE ITEMS */
+  .source-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--light-sand);
+  }
+
+  .source-item:last-child { border-bottom: none; }
+
+  .source-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--deep-earth);
+    color: var(--gold);
+    border-radius: 50%;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    line-height: 28px;
+    text-align: center;
+  }
+
+  .source-item div { font-size: 0.87rem; color: var(--text-mid); line-height: 1.65; }
+  .source-item a { color: var(--terracotta); text-decoration: none; font-weight: 700; }
+  .source-item a:hover { text-decoration: underline; }
+
+  .annotation {
+    background: var(--light-sand);
+    border-left: 3px solid var(--gold);
+    padding: 13px 17px;
+    margin-top: 10px;
+    font-size: 0.83rem;
+    color: var(--text-mid);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+
+
+  /* VISUAL CONTEXT */
+  .visual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 28px 0 50px;
+  }
+  .visual-card {
+    background: var(--sand);
+    border: none;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(16,36,43,0.08);
+  }
+  .visual-img {
+    height: 220px;
+    background: var(--light-sand);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--deep-earth);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    text-align: center;
+    padding: 0;
+  }
+  .visual-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .visual-img img.focus-top { object-position: center top; }
+  .visual-img img.dihya-fit { object-fit: cover; object-position: center top; }
+  .visual-flag {
+    background:
+      linear-gradient(180deg, var(--flag-blue) 0 33.3%, var(--flag-green) 33.3% 66.6%, var(--flag-yellow) 66.6% 100%);
+  }
+  .visual-flag::before {
+    content: 'ⵣ';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--flag-red);
+    font-size: 8rem;
+    font-family: Georgia, serif;
+    font-weight: 700;
+  }
+  .visual-atlas {
+    background:
+      linear-gradient(rgba(16,36,43,0.1), rgba(16,36,43,0.25)),
+      url('https://images.unsplash.com/photo-1531219572328-a0171b4448a3?auto=format&fit=crop&w=900&q=80');
+    background-size: cover;
+    background-position: center;
+  }
+  .visual-dress {
+    background:
+      linear-gradient(rgba(16,36,43,0.05), rgba(16,36,43,0.18)),
+      url('https://upload.wikimedia.org/wikipedia/commons/8/8e/Berber_clothes_Morocco.jpg'),
+      linear-gradient(135deg, var(--flag-red), var(--flag-yellow));
+    background-size: cover;
+    background-position: center;
+  }
+  .visual-dihya {
+    background:
+      linear-gradient(rgba(16,36,43,0.05), rgba(16,36,43,0.18)),
+      url('https://upload.wikimedia.org/wikipedia/commons/f/f3/Dihya_statue_Khenchela.jpg'),
+      linear-gradient(135deg, var(--flag-blue), var(--flag-red));
+    background-size: cover;
+    background-position: center;
+  }
+  .visual-img::after {
+    content: attr(data-fallback);
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0,153,204,0.28), rgba(153,204,51,0.28), rgba(255,229,19,0.28), rgba(204,0,51,0.28));
+    color: var(--deep-earth);
+    padding: 20px;
+  }
+  .visual-img.image-fallback::after { display: flex; }
+  .visual-card figcaption { padding: 14px 16px 18px; font-size: 0.86rem; color: var(--text-mid); line-height: 1.55; }
+  .visual-card a { color: var(--terracotta); text-decoration: none; font-weight: 700; }
+  .visual-card a:hover { text-decoration: underline; }
+  .flag-strip { display: grid; grid-template-columns: repeat(4, 1fr); height: 8px; }
+  .flag-strip span:nth-child(1) { background: var(--flag-blue); }
+  .flag-strip span:nth-child(2) { background: var(--flag-green); }
+  .flag-strip span:nth-child(3) { background: var(--flag-yellow); }
+  .flag-strip span:nth-child(4) { background: var(--flag-red); }
+
+  /* REGIONAL PRESENCE VISUALIZATION */
+  .region-panel {
+    background: var(--deep-earth);
+    color: var(--cream);
+    padding: 30px;
+    border-radius: 8px;
+    margin: 38px 0 48px;
+    box-shadow: 0 14px 30px rgba(16,36,43,0.18);
+  }
+  .region-panel h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 8px; }
+  .region-panel p { color: #d7c9b7; font-size: 0.92rem; }
+  .region-ribbon {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 24px 0 20px;
+    align-items: stretch;
+  }
+  .region-card {
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 18px 14px;
+    min-height: 155px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--cream);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .region-card::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 7px;
+    background: var(--region-color, var(--flag-blue));
+  }
+  .region-card:hover, .region-card.active {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.12);
+    border-color: var(--region-color, var(--flag-blue));
+  }
+  .region-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--region-color, var(--flag-blue));
+    margin-bottom: 8px;
+    display: block;
+  }
+  .region-card strong {
+    color: var(--cream);
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .region-card small { color: #cfc0a8; line-height: 1.45; display: block; }
+  .region-detail {
+    background: rgba(255,255,255,0.08);
+    border-left: 5px solid var(--flag-yellow);
+    border-radius: 5px;
+    padding: 20px 22px;
+  }
+  .region-detail-title {
+    font-family: 'Space Mono', monospace;
+    color: var(--flag-yellow);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .region-detail-text { color: #e9dfcf; font-size: 0.92rem; line-height: 1.65; }
+  .region-note { margin-top: 14px; color: #cfc0a8; font-size: 0.78rem; line-height: 1.5; }
+
+  /* INTERACTIVE NUMBERS */
+  .numbers-panel { background: var(--sand); border: 1px solid var(--light-sand); border-radius: 6px; padding: 24px; margin: 26px 0 36px; }
+  .metric-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .metric-tab { border: 1px solid var(--light-sand); background: var(--cream); color: var(--deep-earth); padding: 14px; text-align: left; cursor: pointer; border-radius: 5px; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .metric-tab.active { border-color: var(--flag-red); box-shadow: inset 0 -4px 0 var(--flag-red); }
+  .metric-display { display: grid; grid-template-columns: minmax(150px, 0.28fr) 1fr; gap: 22px; align-items: center; }
+  .metric-number { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--flag-red); line-height: 1.05; overflow-wrap: anywhere; }
+  .metric-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep-earth); margin-bottom: 8px; }
+  .metric-text { color: var(--text-mid); font-size: 0.94rem; }
+  .dual-bars { display: none; margin-top: 18px; gap: 12px; }
+  .dual-bars.show { display: grid; }
+  .bar-row { display: grid; grid-template-columns: 70px 1fr 50px; gap: 10px; align-items: center; font-family: 'Space Mono', monospace; font-size: 0.68rem; text-transform: uppercase; }
+  .bar-track { height: 14px; background: var(--light-sand); border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; background: var(--flag-blue); width: 0; transition: width 0.4s ease; }
+  .bar-fill.urban { background: var(--flag-green); }
+  .metric-note { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--light-sand); color: var(--text-light); font-size: 0.84rem; }
+  @media (max-width: 720px) { .region-ribbon, .metric-display { grid-template-columns: 1fr; } }
+
+
+
+  /* AUDIO EMBED */
+  .audio-block {
+    background: var(--deep-earth);
+    color: var(--sand);
+    border: none;
+    border-radius: 8px;
+    margin: 34px 0 46px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 14px 32px rgba(16,36,43,0.18);
+  }
+  .audio-feature {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.42fr) 1fr;
+    min-height: 360px;
+  }
+  .audio-image { min-height: 360px; overflow: hidden; background: var(--deep-earth); }
+  .audio-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .audio-content { padding: 34px 38px; display: flex; flex-direction: column; justify-content: center; }
+  .audio-content .section-label { color: var(--gold); }
+  .audio-content .sub-title { color: var(--sand); margin-top: 0; }
+  .audio-block audio { width: 100%; margin: 16px 0 16px; accent-color: var(--gold); }
+  .audio-note { margin: 0 0 12px; color: var(--sand); font-size: 0.92rem; line-height: 1.65; }
+  .audio-note strong, .audio-note em { color: var(--sand); }
+  .audio-translation { border-left: 4px solid var(--gold); background: rgba(255,255,255,0.08); padding: 14px 18px; margin-top: 16px; color: var(--sand); font-size: 0.9rem; line-height: 1.65; }
+  .audio-translation strong, .audio-translation em { color: var(--sand); }
+  @media (max-width: 780px) {
+    .audio-feature { grid-template-columns: 1fr; }
+    .audio-image { min-height: 260px; }
+    .audio-content { padding: 28px 24px; }
+  }
+
+  .media-credit {
+    display: block;
+    margin-top: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep-earth);
+    color: #b3a090;
+    text-align: center;
+    padding: 36px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 2.2;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .hero-grid, .two-col { grid-template-columns: 1fr; gap: 28px; }
+    .dialect-regions { grid-template-columns: 1fr; }
+    .content-wrap { padding: 36px 20px; }
+    header h1 { font-size: 1.9rem; }
+    .personal-note { padding: 32px 24px; }
+    .phase-header { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tifinagh-deco">ⵉⵎⴰⵣⵉⵖⴻⵏ</div>
+  <div class="header-inner">
+    <p class="site-eyebrow">An educational resource · Sofia Boubsis · 2025–2026</p>
+    <h1><span>Imazighen</span>: The Free People</h1>
+    <p class="header-sub">Identity, language, and the long fight for recognition among Morocco's Amazigh communities. What does “official” mean when institutions are not built to follow through?</p>
+  </div>
+</header>
+
+<div class="tifinagh-banner">ⵉⵎⴰⵣⵉⵖⴻⵏ · ⵜⴰⵎⴰⵣⵉⵖⵜ · ⵜⵉⴼⵉⵏⴰⵖ · ⵜⴰⵎⴰⵣⵖⴰ</div>
+
+<nav>
+  <div class="nav-inner">
+    <button class="tab-btn active" onclick="showTab('home',this)">Home</button>
+    <button class="tab-btn" onclick="showTab('who',this)">Who Are the Amazigh?</button>
+    <button class="tab-btn" onclick="showTab('racialization',this)">History of Racialization</button>
+    <button class="tab-btn" onclick="showTab('language',this)">Language & Who Speaks It</button>
+    <button class="tab-btn" onclick="showTab('policy',this)">The 2011 Policy</button>
+    <button class="tab-btn" onclick="showTab('today',this)">Challenges Today</button>
+    <button class="tab-btn" onclick="showTab('sources',this)">Research & Sources</button>
+  </div>
+</nav>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="tab-home" class="panel active">
+  <div class="content-wrap">
+
+    <div class="personal-note">
+      <span class="note-author">A note from the author</span>
+      <p>I am Moroccan, and more specifically, my family is part of the indigenous Amazigh tribes of Morocco. All of my family members speak Tamazight (the language of the Amazigh) and I am so grateful to have been taught from a very early age to speak it too, even though I was born and raised in the United States. Here in the U.S., and even in Moroccan cities like Casablanca and Rabat, it is rare for me to meet other university-aged students who also speak it. Meanwhile, some of the elders in my family speak <em>only</em> Tamazight. Their ability to share their experiences or advocate for themselves within Morocco is limited by institutions that still do not operate consistently in their language, even after Tamazight became constitutionally official.</p>
+      <p>In diaspora spaces, I have met many Moroccan-Americans who identify in different ways. Some describe themselves as Arab, some as Amazigh, and many hold both identities in complicated ways. What they often share is a desire to learn more about Amazigh history, language, and the policies that still shape Amazigh communities today. This website is for them, and for anyone who wants to understand why legal recognition alone is not enough.</p>
+    </div>
+
+
+
+    <p class="section-label">Visual Context</p>
+    <h2 class="section-title">People, Place, and Symbols</h2>
+    <div class="visual-grid">
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/ATLAS_MOUNTAINS_MOROCCO_APRIL_2013_%288706614045%29.jpg/960px-ATLAS_MOUNTAINS_MOROCCO_APRIL_2013_%288706614045%29.jpg" alt="Atlas Mountains in Morocco">
+        </div>
+        <div class="flag-strip"><span></span><span></span><span></span><span></span></div>
+        <figcaption>The Atlas Mountains are central to many Amazigh communities and histories of language preservation.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Dihya_Berber_Queen_of_the_Aur%C3%A8s_by_Vernet-Lecomte.jpg/960px-Dihya_Berber_Queen_of_the_Aur%C3%A8s_by_Vernet-Lecomte.jpg" alt="Queen Dihya, Amazigh queen of the Aurès" class="dihya-fit">
+        </div>
+        <div class="flag-strip"><span></span><span></span><span></span><span></span></div>
+        <figcaption>Queen Dihya is remembered across North Africa as a symbol of Amazigh resistance and political leadership.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Amazigh_jewelry.jpg/960px-Amazigh_jewelry.jpg" alt="Traditional Amazigh jewelry">
+        </div>
+        <div class="flag-strip"><span></span><span></span><span></span><span></span></div>
+        <figcaption>Amazigh jewelry, textiles, embroidery, and craft carry regional meanings through color, pattern, and symbol.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img visual-flag" role="img" aria-label="Amazigh flag with blue, green, yellow, and red Yaz symbol"></div>
+        <div class="flag-strip"><span></span><span></span><span></span><span></span></div>
+        <figcaption>The Amazigh flag uses blue for the Mediterranean, green for the mountains, yellow for the Sahara, and red for the Yaz symbol.</figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="section-label">Overview</p>
+        <h2>The paradox at the center of Moroccan identity</h2>
+        <p>The Amazigh, whose self-designation, <em>Imazighen</em>, means "free people," are the indigenous inhabitants of North Africa. Their presence predates the Arab conquest by thousands of years. Morocco is home to the largest Amazigh population in the world. And yet for most of independent Morocco's history, the Amazigh have occupied a paradoxical position: <strong>celebrated as part of the country's cultural heritage, and systematically marginalized within its institutions.</strong></p>
+        <p>In 2011, Morocco's new constitution recognized Tamazight, the Amazigh language, as a co-official language alongside Arabic. This was a landmark achievement, won through decades of advocacy. But as this project argues, Morocco's management of Amazigh language in schooling and public life is not merely cultural policy. It is a mechanism of <strong>racialization</strong>: a structured, institutionalized process through which the state shapes whose language counts as "official" in daily life, and who bears the costs of translation, silence, or assimilation.</p>
+        <p>Formal recognition and functional inclusion are not synonymous. The gap between them is built into the architecture of Morocco's implementation regime and is the central subject of this project.</p>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-item">
+          <div class="stat-num">35–60%</div>
+          <div class="stat-label">Estimated Amazigh share of Morocco's population</div>
+          <div class="stat-note">Morocco keeps no official ethnic statistics, itself a barrier to accountability flagged by the UN CERD Committee (2023). Amazigh associations contest even language-speaker counts, claiming the true figure may reach 85%.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24.8%</div>
+          <div class="stat-label">Report speaking Tamazight (2024 census)</div>
+          <div class="stat-note">Down from 45–55% in rural areas in 1994. The Amazigh Movement calls this a product of forced assimilation, not natural shift, and contests the census methodology as ideologically skewed.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1.5%</div>
+          <div class="stat-label">Can read & write in Tamazight (Tifinagh)</div>
+          <div class="stat-note">Compared to 99.2% literacy in Arabic. This gap is the clearest evidence that "official" status has not translated into educational access.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">15 yrs</div>
+          <div class="stat-label">Maximum delay built into Organic Law 26-16 (2019)</div>
+          <div class="stat-note">Article 31 stages Tamazight's entry into public life over deadlines of 5, 10, and 15 years, embedding administrative delay into the very architecture of the rights it promises.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label">What this project argues</p>
+    <h2 class="section-title">Three Mechanisms of Racialization Through Institutional Design</h2>
+
+    <p>There are three interlocking themes that together build the case that racialization in the Moroccan Amazigh context operates not through explicit racist intent, but through the institutional architecture of delay, under-resourcing, and conditional recognition.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon roman">I</div>
+        <h4>Theme 1: Rights on Paper vs. Rights in Practice</h4>
+        <p>The 2011 Constitution and Organic Law 26-16 (2019) formally recognize Tamazight. but stage implementation over 5, 10, and 15-year timelines, making delay a feature of the legal architecture itself. Rights that are deferred distribute their costs along ethnolinguistic lines.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon roman">II</div>
+        <h4>Theme 2: Standardization & Script as State Legibility</h4>
+        <p>The state's choice of a single Tifinagh-based standard Tamazight. controlled by IRCAM, a royally chartered body. concentrates authority over what counts as "legitimate Amazigh," creating new internal hierarchies while the state controls the terms of recognition.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon roman">III</div>
+        <h4>Theme 3: Schooling as the Frontline of Racialization</h4>
+        <p>Education is where language rights become daily experience. Research from 2006 through the present shows that Tamazight teachers have faced limited materials, restricted time, and a pipeline never built to scale. structural features of a policy that prioritized symbolic recognition over institutional capacity.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Central Argument</div>
+      <p>Morocco's Amazigh officialization regime is simultaneously a genuine expansion of rights language and a political strategy whose implementation conditions reproduce the ethnolinguistic hierarchy it formally rejects. The state affirms the value of Amazigh culture and language while retaining authority over the terms and timing of its institutional integration, managing legitimacy without fully redistributing power. Under ICERD, the absence of discriminatory <em>intent</em> does not exempt a governance regime from scrutiny when the <em>effects</em> are systematically unequal along ethnic lines.</p>
+    </div>
+
+    <h2 class="section-title">How to Navigate This Site</h2>
+    <p><strong>Who Are the Amazigh?</strong> introduces the people, communities, and culture. <strong>History of Racialization</strong> traces how Amazigh marginalization was constructed across centuries. the historical context the policy argument requires. <strong>Language & Who Speaks It</strong> profiles the actual speakers of Tamazight today and why their situation matters. <strong>The 2011 Policy</strong> analyzes the constitutional and legal architecture in depth, drawing directly on the annotated bibliography. <strong>Challenges Today</strong> documents what life looks like for Amazigh communities in 2025–2026. <strong>Research & Sources</strong> contains the full annotated bibliography with annotations.</p>
+
+  </div>
+</div>
+
+<!-- ══════════ WHO ARE THE AMAZIGH ══════════ -->
+<div id="tab-who" class="panel">
+  <div class="content-wrap">
+    <p class="section-label">Origins & Identity</p>
+    <h2 class="section-title">Who Are the Amazigh?</h2>
+
+    <p>The Amazigh are the indigenous people of North Africa. Genetic and archaeological evidence places their ancestors in the region for at least 10,000 years -- long before Arab migration, before Islam, before Rome. Ancient kingdoms like Numidia and Mauretania, whose leaders included the legendary queen Dihya (Kahena, who led armed resistance against the Arab conquest), were Amazigh civilizations. The "Berber genome," documented by National Geographic's Genographic Project, is found in the DNA of the vast majority of Moroccans, regardless of how they identify today.</p>
+
+    <div class="callout gold">
+      <div class="callout-label">A Note on Terminology</div>
+      <p>The word "Berber" derives from the Latin <em>barbarus</em> (adopted by Greeks and Romans to describe non-Latin speakers) and carries centuries of pejorative connotation: "barbarian." <em>Amazigh</em> (plural: <em>Imazighen</em>) is the preferred self-designation, meaning "free people." <em>Tamazight</em> is the language. <em>Tamazgha</em> refers to the ancestral homeland stretching from the Canary Islands to Egypt's Siwa Oasis. This website uses "Amazigh" throughout, as the people themselves do.</p>
+    </div>
+
+    <h3 class="sub-title">The Three Regional Communities of Morocco</h3>
+
+    <div class="dialect-regions">
+      <div class="dialect-card">
+        <div class="dialect-name">Rifians</div>
+        <div class="dialect-native">TARIFIT · ⵜⴰⵔⵉⴼⵉⵜ</div>
+        <p>Inhabiting the Rif mountains of northern Morocco. Tarifit speakers constitute approximately 3.2% of Morocco's population. The Rif has been a major site of Amazigh political mobilization. from anti-colonial resistance to the Hirak al-Rif protests of 2016–2017.</p>
+      </div>
+      <div class="dialect-card">
+        <div class="dialect-name">Shilha</div>
+        <div class="dialect-native">TASHELHIT · ⵜⴰⵛⵍⵃⵉⵜ</div>
+        <p>The largest Amazigh group in Morocco, living in the Anti-Atlas and Souss-Massa region. Tashelhit is spoken by approximately 14.2% of Moroccans and has a rich oral literary tradition of poetry, music, and storytelling. Some communities remain semi-nomadic.</p>
+      </div>
+      <div class="dialect-card">
+        <div class="dialect-name">Central Atlas</div>
+        <div class="dialect-native">TAMAZIGHT · ⵜⴰⵎⴰⵣⵉⵖⵜ</div>
+        <p>Centered in the Middle Atlas mountains, spoken by approximately 7.4% of Moroccans. Most closely associated with the standardized "official" Tamazight the state promotes -- a fact that has created new internal hierarchies among speakers of different varieties.</p>
+      </div>
+    </div>
+
+    <div class="region-panel" id="regional-presence">
+      <h3>Regional Presence Across Tamazgha</h3>
+      <p>Rather than drawing hard borders around identity, this visualization highlights major Amazigh-speaking regions and the language varieties associated with them. It is meant as a teaching guide, not a census map.</p>
+      <div class="region-ribbon" aria-label="Major Amazigh regions across North Africa">
+        <button class="region-card active" type="button" style="--region-color: var(--flag-red);" data-title="Rif: Tarifit" data-text="The Rif in northern Morocco is a major Tarifit-speaking area. It is also an important site of Amazigh political mobilization and memory.">
+          <span class="region-label">Northern Morocco</span>
+          <strong>Rif</strong>
+          <small>Tarifit-speaking communities</small>
+        </button>
+        <button class="region-card" type="button" style="--region-color: var(--flag-yellow);" data-title="Middle Atlas: Central Atlas Tamazight" data-text="The Middle Atlas is associated with Central Atlas Tamazight. This variety has shaped the standardized form promoted by the state, which has political consequences for other varieties.">
+          <span class="region-label">Central Morocco</span>
+          <strong>Middle Atlas</strong>
+          <small>Central Atlas Tamazight</small>
+        </button>
+        <button class="region-card" type="button" style="--region-color: var(--flag-green);" data-title="Souss and Anti-Atlas: Tashelhit" data-text="The Souss and Anti-Atlas are major Tashelhit-speaking regions with rich traditions of poetry, music, migration, commerce, and oral history.">
+          <span class="region-label">Southern Morocco</span>
+          <strong>Souss / Anti-Atlas</strong>
+          <small>Tashelhit-speaking communities</small>
+        </button>
+        <button class="region-card" type="button" style="--region-color: var(--flag-blue);" data-title="Kabylia and Aurès" data-text="Algeria is home to Kabyle, Chaoui, Mozabite, Tuareg, and other Amazigh communities. Queen Dihya is often associated with the Aurès region.">
+          <span class="region-label">Algeria</span>
+          <strong>Kabylia / Aurès</strong>
+          <small>Kabyle, Chaoui, and related communities</small>
+        </button>
+        <button class="region-card" type="button" style="--region-color: var(--flag-red);" data-title="Tuareg Regions" data-text="Tuareg Amazigh communities span Saharan and Sahelian regions across southern Algeria, Libya, Niger, Mali, and neighboring areas. Their mobility makes fixed-border maps especially misleading.">
+          <span class="region-label">Sahara and Sahel</span>
+          <strong>Tuareg Regions</strong>
+          <small>Transnational Amazigh communities</small>
+        </button>
+      </div>
+      <div class="region-detail" aria-live="polite">
+        <div class="region-detail-title" id="region-title">Rif: Tarifit</div>
+        <div class="region-detail-text" id="region-text">The Rif in northern Morocco is a major Tarifit-speaking area. It is also an important site of Amazigh political mobilization and memory.</div>
+        <p class="region-note">Amazigh identity does not fit neatly into borders. Communities are connected through language, memory, migration, and shared histories across North Africa.</p>
+      </div>
+    </div>
+
+    <p class="section-label">Dress, Adornment, and Regional Identity</p>
+    <h3 class="sub-title">Clothing as Cultural Memory</h3>
+    <div class="visual-grid">
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Faces_of_Tilila_2976_02.jpg/960px-Faces_of_Tilila_2976_02.jpg" alt="Amazigh child wearing silver jewelry and ceremonial adornment">
+        </div>
+        <figcaption>The layered silver headpiece and bright textile details show how Amazigh adornment can mark celebration, regional belonging, and family memory. Silver jewelry is especially important in many Amazigh communities because it carries both beauty and protective symbolism.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Faces_of_Tilila_2976_05.jpg/960px-Faces_of_Tilila_2976_05.jpg" alt="Amazigh girls wearing white garments, jewelry, and embroidered dress">
+        </div>
+        <figcaption>The white garments, embroidered panels, orange beads, and silver head ornaments connect dress to ceremony and respectability. White often signals festivity, dignity, and public presentation, while the jewelry makes heritage visible on the body.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Jebala_woman_with_the_traditional_Jebala_hat.jpg/960px-Jebala_woman_with_the_traditional_Jebala_hat.jpg" alt="Jebala woman wearing a traditional sheshia reed hat">
+        </div>
+        <figcaption>The wide woven Jebala reed hat, often called a <em>sheshia</em> or <em>chichia</em>, is associated with northern Morocco, especially Jbala areas around the Rif and Chefchaouen. Its colorful wool pom-poms and broad brim are both practical for sun protection and visually tied to local mountain identity.</figcaption>
+      </figure>
+    </div>
+
+
+
+
+
+
+    <h3 class="sub-title">Culture, Oral Tradition, and Resilience</h3>
+
+    <div class="audio-block">
+      <div class="audio-feature">
+        <div class="audio-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ahwach_Tajelt.png/960px-Ahwach_Tajelt.png" alt="Ahwach performers from the Atlas region playing music in traditional white clothing">
+        </div>
+        <div class="audio-content">
+          <p class="section-label">Music & Culture</p>
+          <h3 class="sub-title">Listen: Tassanou</h3>
+          <audio controls preload="metadata">
+            <source src="tassanou.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <p class="audio-note"><strong>Tassanou</strong>, featuring Tamazert Awa, connects beautifully to the Ahwach tradition: collective rhythm, call-and-response feeling, poetry, and performance as a way of carrying memory across generations. Ahwach is especially associated with Amazigh communities of southern Morocco, including the Souss and Anti-Atlas regions, where collective dance and sung poetry remain central to public celebration and cultural memory.</p>
+          <div class="audio-translation"><strong>Translation:</strong> <em>Tassanou</em> can be presented as “my dear” or “my beloved.”</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p>Because Amazigh languages were excluded from formal institutions for centuries, <strong>oral tradition</strong> (songs, poetry, proverbs, and storytelling) became the primary vehicle for cultural memory. These traditions survive today in music (Ahwach, Ahidus, Gnawa traditions), communal ceremony, and the visual language of Amazigh craft: geometric motifs woven into carpets, stamped into silver jewelry, carved into wooden doors, and tattooed onto skin.</p>
+        <p>The Amazigh flag, with horizontal bands of blue (Mediterranean), green (Atlas), and yellow (Sahara) and a red <em>Yaz</em> (ⵣ) at the center, has become the emblem of the cultural revival. The Yaz  signifies freedom, cultural identity, resistance, and the harmonious connection between people, land, and sky. Yennayer, the Amazigh New Year (around January 13–14), was officially recognized as a Moroccan national holiday in 2024.</p>
+      </div>
+      <div>
+        <p>Amazigh women have historically played a central and uniquely gendered role in cultural survival. While urban men have led public advocacy campaigns for Tamazight's recognition, <strong>rural women -- especially those who are illiterate in Arabic -- have been the ones who kept Tamazight alive</strong> as a spoken language at home, in lullabies, in oral poetry, and communal storytelling. Scholars describe the orality of Amazigh women as a "major factor in Tamazight's survival."</p>
+        <p>This division has a double edge: the language is sustained in domestic space, invisible to public and institutional life. while simultaneously associated with women and rural poverty, reinforcing the hierarchy that positions it as "lesser" than the languages of education and government.</p>
+      </div>
+    </div>
+
+    <blockquote>
+      "Amazigh culture is the basis and the core of Moroccan culture. The Amazigh did not reject the Jews or the Arabs who came later; they integrated them. That is why Moroccan identity is plural, and why coexistence is not just a slogan, but a lived tradition."
+      <cite>Source: Dr. Mohamed Chtatou, professor and political analyst</cite>
+    </blockquote>
+
+    <div class="callout olive">
+      <div class="callout-label">Marginalization Within the National Narrative</div>
+      <p>The ruling, urban elite of Morocco has historically been composed of Arab-identified populations, while Imazighen have been classified as the rural "others." Amazigh contributions to Moroccan history have been censored from the national narrative or folklore-ized, reduced to costumes and crafts rather than recognized as a living, ongoing dimension of Moroccan civic life. This was not accidental: the post-independence Moroccan state pursued a nation-building project built on Arabism and Islam that actively erased Amazigh presence. The turn toward recognition that began cautiously in the 1990s and accelerated after 2011 emerged from sustained Amazigh advocacy, not a spontaneous change of heart in the state.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ HISTORY OF RACIALIZATION ══════════ -->
+<div id="tab-racialization" class="panel">
+  <div class="content-wrap">
+    <p class="section-label">Historical Context</p>
+    <h2 class="section-title">The History of Amazigh Racialization</h2>
+
+    <p>The marginalization of the Amazigh is not a recent phenomenon, nor simply a product of one government's policy. It is the accumulated weight of conquests, colonial projects, and postcolonial nation-building, each layer adding to an institutional architecture in which Amazigh identity was systematically othered. Understanding this history is essential to understanding why the 2011 officialization was so significant, and why, even so, it was not sufficient.</p>
+
+    <p><strong>Racialization</strong>, the process by which a group is defined as racially or ethnically distinct and subjected to differential treatment, in the Moroccan context has operated across at least four distinct historical phases. Crucially, it has operated not primarily through overt racist violence but through the allocation of institutional resources, administrative access, and public legitimacy along lines that consistently disadvantaged Amazigh speakers.</p>
+
+    <h3 class="sub-title">The Phases of Racialization</h3>
+    
+    <div class="race-phase">
+      <div class="phase-header">
+        <span class="phase-era">7th–16th Century</span>
+        <h4>Arab Conquest and the First Arabization</h4>
+      </div>
+      <p>The Islamic conquest of North Africa beginning in the 7th century brought both Islamization and Arabization. Arabic became the language of religion, law, and urban governance. The arrival of warrior Arab nomads, the Banu Hilal and Banu Sulaym, in the 11th century drove Amazigh communities off the plains and into the mountains. From the 16th century onward, Amazigh dynasties were replaced in Morocco by Arab-descended ruling families claiming lineage from the Prophet Muhammad (ﷺ), linking political legitimacy explicitly to Arab identity. Amazigh languages were reduced to spoken folk languages with no institutional standing. Arab and Western historians then competed to define Amazigh "origins" according to their own agendas: Western scholars linked them to Rome; Arab historians to Yemen. Each appropriated Amazigh history rather than taking it on its own terms, an early, scholarly form of racialization.</p>
+    </div>
+
+    <div class="race-phase p2">
+      <div class="phase-header">
+        <span class="phase-era">1912–1956</span>
+        <h4>French Colonial Policy: The Berber Dahir and the Arab/Berber Binary</h4>
+      </div>
+      <p>The French Protectorate institutionalized a sharp Arab/Berber distinction as a divide-and-rule strategy. The infamous <em>Berber Dahir</em> of 1930 subjected Amazigh communities to French civil courts rather than Islamic law, positioning them as "less Muslim" and more susceptible to French cultural influence. This created an association between Amazigh identity and colonial collaboration that Moroccan nationalists exploited to delegitimize Amazigh cultural claims. an association that persisted long after independence. Importantly, Amazigh populations largely rejected this colonial framing and participated actively in anti-colonial resistance alongside Arab Moroccans; but the damage to how Amazigh identity was perceived within nationalist discourse was lasting. The sharp Arab/Berber binary that structures so much discussion of Moroccan identity today is itself, in significant part, a colonial artifact.</p>
+    </div>
+
+    <div class="race-phase p3">
+      <div class="phase-header">
+        <span class="phase-era">1956–1994</span>
+        <h4>Postcolonial Arabization: Nation-Building Through Erasure</h4>
+      </div>
+      <p>After independence in 1956, Morocco pursued a homogenizing nationalist project centered on Arab identity and Islam -- consistent with post-independence states across the Maghreb. Arabization was state policy: Arabic instruction became mandatory in schools; administration shifted to Arabic; the constitutions of 1962 and 1972 made no mention of Amazigh. Salem Chaker, a leading linguist, described how Arab nationalism sought "the negation of Amazigh identity as a factor of political legitimacy." Amazigh speakers navigating courts, hospitals, schools, and government offices did so in languages they did not speak. The costs of this were borne almost entirely by Amazigh communities -- a textbook case of racialization through institutional design. The "Multilingualism, Cultural Identity, and Education in Morocco" volume (Springer, 2005) provides essential context here: introducing Amazigh into schools was never a neutral curricular choice because it required navigating entrenched hierarchies shaped by these decades of colonial governance and post-independence Arabization policy.</p>
+    </div>
+
+    <div class="race-phase p4">
+      <div class="phase-header">
+        <span class="phase-era">1994–Present</span>
+        <h4>Managed Recognition: Co-optation and Controlled Inclusion</h4>
+      </div>
+      <p>Beginning in 1994, under pressure from a growing Amazigh cultural movement, the Moroccan state began a strategic shift. King Hassan II acknowledged Amazigh dialects as part of Morocco's heritage; King Mohammed VI founded IRCAM in 2001. The 2011 constitution granted Tamazight official status amid Arab Spring protests. Scholars studying the revival argue this turn toward recognition has operated, in significant part, as co-optation: the state incorporated Amazigh heritage into national identity discourse precisely when Amazigh demands began acquiring a broader political dimension threatening to the regime's authority. The doctoral dissertation by Bao (2026) traces how IRCAM's founding documents and constitutional language embed ideologies of "unity and managed diversity" that frame standardization and officialization as technical projects while they are in fact deeply political with the state positioning itself as the sole arbiter of "legitimate Amazigh." Officialization and subordination are not mutually exclusive; they operate simultaneously.</p>
+    </div>
+
+    <h3 class="sub-title">The Fluid Reality Behind the Binary</h3>
+
+    <p>It is important to note that the rigid Arab/Berber binary masks a far more fluid historical reality. Moroccan Arabic (Darija) is so heavily influenced by Amazigh grammar and phonology that linguists note its distinctiveness from Classical Arabic. Many Moroccan Jewish communities historically spoke varieties blending Arabic and Amazigh. Intermarriage across ethnic categories has been common for centuries. Genetic evidence suggests Amazigh ancestry is foundational to the majority of Moroccans regardless of how they identify today. The colonial and postcolonial imposition of rigid categories onto this fluid reality is itself part of how racialization operates. by creating and institutionalizing distinctions that then take on their own social force.</p>
+
+    <blockquote>
+      "The marginality of the indigenous Tamazight languages in Morocco reflects a historically-rooted marginalisation of Berber cultures in relation to how Morocco foments its mainstream cultural narrative. not a neutral pragmatic preference for a lingua franca."
+      <cite>Source: Leeds Human Rights Journal, "The Politics of Language and the Marginality of the Amazigh of Morocco"</cite>
+    </blockquote>
+
+    <h3 class="sub-title">How International Human Rights Law Names This History</h3>
+
+    <p>The International Convention on the Elimination of All Forms of Racial Discrimination (ICERD), to which Morocco is a signatory, defines racial discrimination to include distinctions based on <strong>national or ethnic origin</strong> that have the purpose <em>or effect</em> of impairing the equal enjoyment of rights. The distinction between purpose and effect is critical: a state cannot escape scrutiny by pointing to the absence of discriminatory intent when the effects of its policies are systematically unequal along ethnic lines.</p>
+
+    <p>This doctrinal bridge, from language policy to racialization, is what makes Morocco's Amazigh case legible as a human rights issue, not merely a policy dispute. The UN CERD Committee's 2023 Concluding Observations on Morocco directly reflect this: the Committee criticized Morocco's absence of disaggregated ethnic composition data as making it structurally impossible to assess whether equal enjoyment of rights, including in education, is actually being achieved. Without data, the gap between legal promise and lived access remains invisible to the very monitoring mechanisms designed to close it. The absence of data, in other words, is not incidental. It is a condition that protects the status quo.</p>
+
+    <div class="accent-bar">
+      <p><strong>Key principle from ICERD:</strong> Under international human rights law, "racial discrimination" includes distinctions based on ethnic or national origin that produce unequal outcomes in education and public life. regardless of whether discriminatory intent is present. When a state systematically under-resources the language most historically associated with an ethnolinguistic group, and when official-language status does not translate into assessment weight, instructional continuity, or teacher preparation, the effect is that children from that group bear unequal educational burdens. This is racialization through institutional design.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ LANGUAGE & WHO SPEAKS IT ══════════ -->
+<div id="tab-language" class="panel">
+  <div class="content-wrap">
+    <p class="section-label">Tamazight in Everyday Life</p>
+    <h2 class="section-title">Language & Who Speaks It</h2>
+
+    <p>Understanding Morocco's 2011 officialization requires understanding <em>who actually speaks Tamazight</em>, in what contexts, and what it means when that language is absent from schools, hospitals, courtrooms, and government offices. The reality is that language policy is distributive governance. Decisions about which languages enter institutions determine who can navigate those institutions, and who bears the cost of exclusion.</p>
+
+    <div class="tif-display">
+      <span class="tif-main">ⵜⴰⵎⴰⵣⵉⵖⵜ</span>
+      <span class="tif-trans">Tamazight. written in Tifinagh script · the language of the Amazigh</span>
+    </div>
+
+    <h3 class="sub-title">A Language Family, Not a Single Language</h3>
+
+    <p>Tamazight is not one language but a family of related varieties. In Morocco, three major spoken forms exist: <strong>Tarifit</strong> in the Rif mountains of the north; <strong>Tamazight</strong> in the Middle Atlas; and <strong>Tashelhit</strong> in the south and Souss Valley. These share grammatical roots and are related to Amazigh languages spoken across North Africa and the Sahel, but they differ enough in vocabulary and phonology that speakers from different regions may not readily understand each other. The state's construction of a single "Standard Moroccan Amazigh" in Tifinagh, a standardized form that nobody natively speaks, adds a fourth layer to this already complex linguistic landscape, and creates new internal hierarchies between whose Amazigh is "standard" and whose is "regional."</p>
+
+    <h3 class="sub-title">Four Communities of Speakers</h3>
+
+    <div class="speaker-profile">
+      <div class="speaker-label">Speaker Community 1</div>
+      <h4>Rural Mountain Communities. The Strongest Domain</h4>
+      <p>Amazigh is most vibrant in the remote villages of the Atlas and Rif mountains and the Souss Valley. In these communities, Tamazight is the primary language of home, market, communal gathering, and intergenerational communication. Fieldwork-based research confirms that rural speakers feel most comfortable in Tamazight; it is the language in which they describe the world as they actually experience it. However, these same communities face the most acute implementation deficits: schools are less likely to have qualified Tamazight teachers, and the standardized Tifinagh-based curriculum taught in urban pilot programs often differs substantially from the varieties actually spoken locally.</p>
+    </div>
+
+    <div class="speaker-profile">
+      <div class="speaker-label">Speaker Community 2</div>
+      <h4>Elderly and Monolingual Speakers. The Most Vulnerable</h4>
+      <p>There is a significant population of Amazigh elders who speak <em>only</em> Tamazight -- who have never learned Arabic or French, and who navigate a Morocco in which government, courts, hospitals, and banks operate in languages they do not speak. For these individuals, Tamazight's absence from institutional life is not a cultural inconvenience but a structural barrier to accessing basic rights. Organic Law 26-16 (2019) promises Amazigh speakers free translation services in legal and administrative contexts, but implementation of this provision, like most others, is staged over multi-year timelines with no enforcement mechanism.</p>
+    </div>
+
+    <div class="visual-grid">
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/The_Radiant_Smile_of_Amazigh_Heritage.jpg/960px-The_Radiant_Smile_of_Amazigh_Heritage.jpg" alt="Older Amazigh woman smiling">
+        </div>
+        <figcaption>Older Amazigh women often carry language, memory, and oral tradition across generations.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/A_berber_women_group_in_a_folk_festival.jpg/960px-A_berber_women_group_in_a_folk_festival.jpg" alt="Group of Amazigh women at a folk festival">
+        </div>
+        <figcaption>Women’s collective cultural practices remain central to Amazigh survival and visibility.</figcaption>
+      </figure>
+    </div>
+
+    <div class="speaker-profile">
+      <div class="speaker-label">Speaker Community 3</div>
+      <h4>Rural Women. The Language's Living Guardians</h4>
+      <p>Scholars of Amazigh linguistics identify rural women. particularly those who are illiterate in Arabic. as the primary keepers of spoken Tamazight. While urban men have led the public advocacy movement, women in mountain communities have sustained the language as a daily living practice: in household communication, in raising children, in oral poetry, song, and storytelling passed across generations. Researchers at FUNCI (Islamic Culture Foundation) document how "the orality of illiterate women is a major factor in Tamazight's survival." These women use the language to keep communities informed, repeat cultural histories, and maintain social memory. This gendered division matters politically: Tamazight survives in domestic space the state cannot easily reach, while its speakers are simultaneously denied access to the state in their own language.</p>
+    </div>
+
+    <div class="speaker-profile">
+      <div class="speaker-label">Speaker Community 4</div>
+      <h4>Urban Youth & the Diaspora. Heritage Without Fluency</h4>
+      <p>In Morocco's cities and in diaspora communities across France, Belgium, Spain, the Netherlands, and the United States, a different relationship to Tamazight has emerged. Many urban and diaspora Moroccans of Amazigh heritage identify ethnically but have lost access to the language: unable to communicate with monolingual elders, yet eager to reclaim an identity their families were pressured to abandon. In cities, the dominance of Arabic and French in schooling, media, and professional life has accelerated language shift. In the diaspora, Moroccan Arabic (Darija) often serves as the community language, further marginalizing Tamazight even among Amazigh families. This is the community many university-aged Moroccan-Americans belong to. Amazigh by heritage, curious and willing to learn, but systematically cut off from their own language by a policy environment that has never prioritized it.</p>
+    </div>
+
+    <h3 class="sub-title">The Numbers and Their Limits</h3>
+
+    <div class="numbers-panel">
+      <div class="metric-tabs">
+        <button class="metric-tab active" type="button" data-number="24.8%" data-title="Reported Tamazight Use" data-text="The 2024 census reported that 24.8% of Moroccans speak Tamazight. Amazigh organizations dispute this figure and argue that census design and assimilation pressures affect what people report." data-note="This number should be read as a political data point, not as a neutral measure of identity." data-bars="none">Reported use</button>
+        <button class="metric-tab" type="button" data-number="33.3% / 19.9%" data-title="Rural and Urban Use Are Uneven" data-text="Tamazight use is reported at about 33.3% in rural areas and 19.9% in urban areas. The gap shows how language survival is tied to geography, migration, schooling, and state investment." data-note="The regions where Amazigh is strongest are often the regions with weaker institutional access." data-bars="urban">Rural / urban</button>
+        <button class="metric-tab" type="button" data-number="1.5%" data-title="Written Literacy in Tifinagh" data-text="Only 1.5% of Moroccans report being able to read and write Tamazight in Tifinagh, even though the script has had official status for more than two decades." data-note="This gap shows that symbolic visibility does not automatically create educational access." data-bars="none">Tifinagh literacy</button>
+        <button class="metric-tab" type="button" data-number="Access Gap" data-title="Visibility Still Does Not Equal Access" data-text="Tamazight remains limited in media, administration, courts, schools, and everyday public services. The central issue is whether speakers can rely on the language when they need education, healthcare, justice, or government services." data-note="Recognition matters, but implementation determines whether that recognition becomes practical access." data-bars="none">Institutional access</button>
+      </div>
+      <div class="metric-display">
+        <div class="metric-number" id="metric-number">24.8%</div>
+        <div>
+          <div class="metric-title" id="metric-title">Reported Tamazight Use</div>
+          <p class="metric-text" id="metric-text">The 2024 census reported that 24.8% of Moroccans speak Tamazight. Amazigh organizations dispute this figure and argue that census design and assimilation pressures affect what people report.</p>
+          <div class="dual-bars" id="dual-bars">
+            <div class="bar-row"><span>Rural</span><div class="bar-track"><div class="bar-fill" id="rural-bar"></div></div><span>33.3%</span></div>
+            <div class="bar-row"><span>Urban</span><div class="bar-track"><div class="bar-fill urban" id="urban-bar"></div></div><span>19.9%</span></div>
+          </div>
+          <div class="metric-note" id="metric-note">This number should be read as a political data point, not as a neutral measure of identity.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">The Tifinagh Controversy</h3>
+
+    <p>Tifinagh is one of the world's oldest scripts still in active use. Ancient Libyco-Berber inscriptions date to at least 600 BCE, and the Tuareg people of the Sahara continue to use it today for private correspondence and ornamentation. It is a symbol of deep historical continuity and cultural pride for the Amazigh.</p>
+
+    <p>But Morocco's 2003 adoption of Tifinagh as the <em>official</em> script for Standard Tamazight was made for political reasons, not practical ones. Most Moroccan Amazigh speakers who wrote in their language used the Latin alphabet. The decision was made by IRCAM, a royally-chartered body, after "a contentious process" that critics, including linguist Salem Chaker, warned would drive Amazigh language promotion "into a sure dead end." The doctoral dissertation by Bao (2026) argues this choice was not technical but ideological: it served to mark Amazigh distinctiveness from both Arabic and Latin while the state retained control over the terms of that distinctiveness. As of today, Tifinagh remains absent from identity cards, passports, and the 2023 Moroccan banknotes.</p>
+
+    <blockquote>
+      "If you relinquish your alphabet, you relinquish the very basic element of your existence."
+      <cite>Source: Brahim El Guabli, Amazigh scholar and co-founder, Tamazgha Studies Journal</cite>
+    </blockquote>
+
+  </div>
+</div>
+
+<!-- ══════════ THE 2011 POLICY ══════════ -->
+<div id="tab-policy" class="panel">
+  <div class="content-wrap">
+    <p class="section-label">Constitutional Recognition & Organic Law 26-16</p>
+    <h2 class="section-title">The 2011 Policy: What Was Promised and How It Works</h2>
+
+    <p>The 2011 revision of Morocco's constitution was written against the backdrop of the Arab Spring. Protest movements, including a significant Amazigh dimension, put pressure on King Mohammed VI to reform. Article 5 of the resulting constitution granted official status to Tamazight alongside Arabic for the first time in Moroccan history. This was a real legal achievement, produced through sustained advocacy by Amazigh cultural movements. It cannot be dismissed as purely symbolic.</p>
+
+    <p>Yet the achievement of formal recognition is not the same as the achievement of equal institutional belonging. The gap between the two is not a failure of implementation in the ordinary sense. It is a strategic structural feature of the officialization architecture itself -- what this project calls the <em>architecture of managed delay</em>.</p>
+
+    <div class="visual-grid">
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Arab_Spring_%286198933447%29.jpg/960px-Arab_Spring_%286198933447%29.jpg" alt="Arab Spring protest crowd in 2011">
+        </div>
+        <figcaption>The 2011 constitutional reform took shape during the wider Arab Spring moment, when public protest across the region pushed governments to respond to demands for dignity, political reform, and accountability.</figcaption>
+      </figure>
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Les_Amazighs_du_Maroc_souhaitent_la_reconnaissance_de_leur_langue_%285631813734%29.jpg/960px-Les_Amazighs_du_Maroc_souhaitent_la_reconnaissance_de_leur_langue_%285631813734%29.jpg" alt="Amazigh activists in Morocco calling for recognition of their language">
+        </div>
+        <figcaption>The Amazigh dimension of Morocco’s protest politics centered language recognition, cultural dignity, and the demand that Tamazight become more than heritage: a language with enforceable public rights.</figcaption>
+      </figure>
+    </div>
+
+    <div class="callout sky">
+      <div class="callout-label">Article 5, Constitution of Morocco (2011). English Translation</div>
+      <p>"Arabic remains the official language of the state… Likewise, Tamazight constitutes an official language of the State, being common patrimony of all Moroccans without exception. An organic law defines the process of implementation of the official character of this language, as well as the modalities of its integration into teaching and into the priority domains of public life, so that it may be permitted in time to fulfill its function as an official language."</p>
+    </div>
+
+    <h3 class="sub-title">Reading the Fine Print: Three Structural Ambiguities</h3>
+
+    <div class="two-col">
+      <div>
+        <p><strong>The article distinction:</strong> Arabic is described as <em>the</em> official language; Tamazight as <em>an</em> official language. In both Arabic and French (the constitution's operative languages), this grammatical distinction signals primary vs. secondary status. Some Amazigh activists argue this alone perpetuates Tamazight's subordination within the formal legal order.</p>
+        <p><strong>"In time" language:</strong> The phrase permitting Tamazight to fulfill its function as official language "in time" builds open-ended delay into the constitutional text itself -- with no deadline, no benchmark, no enforcement mechanism specified.</p>
+      </div>
+      <div>
+        <p><strong>Heritage framing:</strong> Almohawes (2024) shows through discourse analysis that calling Tamazight the "common patrimony of all Moroccans" affirms cultural value while stopping short of the institutional redistribution that equal belonging would require. It reframes Tamazight as a shared cultural inheritance rather than a living language with specific speakers who have specific rights, subtly diluting Amazigh-specific claims while appearing inclusive.</p>
+        <p>This is the mechanism Almohawes identifies: constitutional language simultaneously frames Amazigh as national identity <em>and</em> as a rights claim, and the identity-based framing can legitimate symbolic recognition without guaranteeing operational equality.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Organic Law 26-16 (2019): Rights with Built-In Delay</h3>
+
+    <p>Eight years after the constitution, Morocco's parliament passed Organic Law 26-16: the law meant to operationalize Tamazight's official status. In scope, the law is ambitious: it mandates progressive integration across <em>all</em> educational levels (preschool through secondary and vocational training) and extends Tamazight's reach into administrative documents, civil registry services, call centers, official websites, public signage, and the justice system, where Amazigh speakers are entitled to free translation services.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Architecture of Delay. Articles 31 and 32</div>
+      <p><strong>Article 31</strong> stages entry-into-force over maximum deadlines of five, ten, and <em>fifteen years</em> across different provisions, meaning full implementation is legally permitted to take until 2036. <strong>Article 32</strong> requires each ministry to produce an action plan and creates a permanent interministerial monitoring commission. But as this project argues, an action plan is a planning instrument, not a delivery mechanism. It documents intent without guaranteeing outcome, generating documentation of compliance while Amazigh speakers continue to bear the costs of incomplete implementation.</p>
+    </div>
+
+    <p>This institutionalized delay has a clear distributive logic. During the deferral period, the costs of incomplete implementation (navigating the state in a language not one's own, receiving schooling in which one's language is marginalized, bearing the burden of translation in legal contexts) all fall disproportionately on Amazigh speakers. When that differential burden is produced by the state's own institutional design, and when it tracks ethnolinguistic belonging, it meets ICERD's functional definition of discrimination: unequal enjoyment of rights based on ethnic origin, regardless of intent. The Minority Rights Group International (2022) fact sheet explicitly identifies Organic Law 26-16's staged timelines as "a concrete barrier to effective rights realization."</p>
+
+    <h3 class="sub-title">IRCAM and the Politics of Standardization</h3>
+
+    <p>The Royal Institute of Amazigh Culture (IRCAM), founded in 2001 by royal decree (Dahir n° 1-01-299), was tasked with developing Tamazight for educational and public use. Its founding decree ties cultural promotion to the codification of a written form. positioning IRCAM as both a recognition institution and a regulatory one: expanding Amazigh's symbolic visibility while concentrating authority over the terms of that visibility in a royally chartered body. Bao (2026) traces how IRCAM's institutional logic embeds ideologies of national unity and "managed diversity" that make standardization appear as technical work while it is in fact a deeply political choice about which variety's features are foregrounded, which script is authorized, and which community's Amazigh becomes "standard."</p>
+
+    <h3 class="sub-title">Implementation Record: Promise vs. Practice</h3>
+
+    <table class="policy-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Development</th>
+          <th>Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2001</td>
+          <td>IRCAM founded; Tamazight begins entering some primary schools; textbooks developed in Tifinagh</td>
+          <td><span class="badge badge-gold">Partial</span></td>
+        </tr>
+        <tr>
+          <td>2011</td>
+          <td>Constitution declares Tamazight co-official; implementation delegated to future organic law with no deadline</td>
+          <td><span class="badge badge-gold">Symbolic</span></td>
+        </tr>
+        <tr>
+          <td>2019</td>
+          <td>Organic Law 26-16 passed. 8 years post-constitution; stages implementation over 5, 10, 15-year timelines</td>
+          <td><span class="badge badge-gold">Partial</span></td>
+        </tr>
+        <tr>
+          <td>2022</td>
+          <td>New policy requires Tamazight teachers to pass exams in Arabic, French, sciences, and math. Arabic teachers face no Tamazight requirement</td>
+          <td><span class="badge badge-red">Regressive</span></td>
+        </tr>
+        <tr>
+          <td>June 2023</td>
+          <td>Minister of Education confirms Tamazight cannot reach all primary schools before 2030. 19 years post-constitution; secondary schools unaddressed</td>
+          <td><span class="badge badge-red">Delayed</span></td>
+        </tr>
+        <tr>
+          <td>Nov 2023</td>
+          <td>New Moroccan banknotes issued without Tifinagh script, despite Tamazight's constitutional official status</td>
+          <td><span class="badge badge-red">Excluded</span></td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>UN CERD criticizes Morocco's absence of disaggregated ethnic data, making rights compliance structurally unverifiable</td>
+          <td><span class="badge badge-red">Unaccountable</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>Morocco officially recognizes Yennayer (Amazigh New Year) as a national holiday</td>
+          <td><span class="badge badge-green">Progress</span></td>
+        </tr>
+        <tr>
+          <td>2025–2026</td>
+          <td>Implementation of Organic Law 26-16 ongoing; key provisions remain within their legal deferral windows; advocacy from 900+ civil society organizations continues</td>
+          <td><span class="badge badge-gold">Contested</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ══════════ CHALLENGES TODAY ══════════ -->
+<div id="tab-today" class="panel">
+  <div class="content-wrap">
+    <p class="section-label">Present-Day Realities · Last Updated: May 2026</p>
+    <h2 class="section-title">Where the Policy Meets Daily Life</h2>
+
+    <p>More than a decade after the constitutional recognition of Tamazight, the gap between formal equality and lived institutional belonging remains wide. Drawing directly on the three themes of the annotated bibliography, this section documents the mechanisms through which that gap is produced and sustained -- not as implementation failures, but as structural features of how the policy was designed.</p>
+
+    <div class="visual-grid">
+      <figure class="visual-card">
+        <div class="visual-img">
+          <img src="https://www.gisreportsonline.com/wp-content/uploads/2025/11/gettyimages-2241643376-2048x1152.jpg" alt="Gen Z protesters in Morocco" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Les_Amazighs_du_Maroc_souhaitent_la_reconnaissance_de_leur_langue_%285631813734%29.jpg/960px-Les_Amazighs_du_Maroc_souhaitent_la_reconnaissance_de_leur_langue_%285631813734%29.jpg'; this.alt='Amazigh language recognition protest in Morocco';">
+        </div>
+        <figcaption>Morocco’s recent Gen Z protests make the “challenges today” section feel immediate: young people are still using public space to demand accountability, services, and a future in which constitutional promises become lived reality. For Amazigh communities, that broader demand for dignity also raises the question of whether official recognition can become practical access in schools, hospitals, courts, and administration.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="sub-title">Schooling: Where the Gap Is Most Consequential</h3>
+
+    <p>Education is where language rights become daily experience. Research from 2006 through today shows a consistent pattern: the institutional pipeline for Tamazight in Moroccan schools was never built to sustain what the law promised. This consistency across nearly two decades is telling: it suggests not a series of separate failures, but a structural outcome of how the policy was originally designed.</p>
+
+    <p>Tamazight entered Moroccan primary schools in 2003. Early qualitative research (Errihani 2006), based on classroom observation in 2004–2005, found teachers reporting limited familiarity with Tifinagh, scarce materials, restricted instructional time, and uncertainty about the policy's durability. Follow-up research (El Aissati, Karsmakers, & Kurvers 2011) confirmed these bottlenecks had not been resolved, capturing the reality in the teachers' own words: <em>"We Are All Beginners."</em> Teachers were expected to deliver curriculum in a language and script they were simultaneously learning, with insufficient materials and inadequate time. This is not a portrait of individual incompetence. It is systematic under-investment in the professional infrastructure that substantive implementation requires.</p>
+
+    <div class="callout olive">
+      <div class="callout-label">Buckner (2006): Symbolic vs. Substantive Implementation</div>
+      <p>Buckner provides the crucial interpretive frame: a language initiative that introduces Amazigh into the curriculum without making it assessment-relevant, without training a sufficient pipeline of certified teachers, and without ensuring continuity across grade levels is, functionally, a <em>symbolic</em> initiative. It generates public legitimacy for the state without building the durable infrastructure that would normalize Amazigh as a practiced language of schooling. The same design logic, visible in 2006 classrooms, is institutionalized in Organic Law 26-16's staged timelines. The pattern did not emerge from failure; it was the predictable outcome of a reform that prioritized recognition over capacity-building.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon roman">I</div>
+        <h4>The 2022 Certification Reversal</h4>
+        <p>Since 2022, Tamazight teachers must pass exams in Arabic, French, sciences, and mathematics. Arabic and French teachers face no equivalent Tamazight requirement. encoding hierarchy directly into the credential system. Some teachers now qualify with only 45 days of Tamazight training, raising serious concerns about instruction quality.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon roman">II</div>
+        <h4>University Programs Declining</h4>
+        <p>Enthusiasm for Amazigh Studies programs at universities has faded: graduates find only short-term teaching contracts because civil service positions requiring Tamazight expertise remain unbuilt. The organic law was supposed to create these pathways, but implementation is staged over fifteen years.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon roman">III</div>
+        <h4>Absent from Assessments</h4>
+        <p>Tamazight is not treated as relevant in Morocco's national assessment system. A language that never appears on a high-stakes exam is institutionally signaled as non-essential -- regardless of what the constitution says about its status.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon roman">IV</div>
+        <h4>Curriculum Content</h4>
+        <p>Discourse analyses of Ministry-approved materials find Amazigh representation ranging from suppression to "conditional inclusion." The national narrative centers an Arabic-Islamic identity frame, positioning Amazigh as heritage rather than a living dimension of Moroccan civic life, encoding marginality into the content of schooling itself.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Raciolinguistic Ideology in the Classroom</h3>
+
+    <p>Flores and Rosa's (2015) theory of raciolinguistic ideologies applies directly to the Moroccan case. Educational institutions treat certain linguistic forms as "normatively appropriate" while treating others as supplementary or in need of remediation. This appropriateness regime is not linguistically neutral; it is entangled with the social identities associated with different languages. In Morocco, Arabic's position as the dominant language of instruction and assessment, reinforced by decades of postcolonial Arabization, means that Tamazight's entry into schools occurs on terms already structured by an existing hierarchy. Formal recognition does not dissolve that hierarchy; it operates within it.</p>
+
+    <p>A child who attends a school where Amazigh appears on the wall in Tifinagh signage but not in the history textbook, where the language is taught as a cultural subject but not as a medium of scientific or civic instruction, and where the national narrative centers Arabic-Islamic heritage, receives an education that institutionally encodes the marginality of Amazigh -- regardless of what Article 5 of the constitution says.</p>
+
+    <h3 class="sub-title">Beyond Education: Identity, Land, and Data</h3>
+
+    <p>The Amazigh struggle extends beyond classrooms. Since 2019, collective Amazigh lands held in undivided communal ownership have lost the protection of inalienability. exposing them to privatization and dispossession. Tifinagh remains absent from identity cards, passports, and the 2023 Moroccan banknotes. The right to give children Amazigh first names continues to face bureaucratic resistance in some regions. And the 2024 census -- conducted without involving Amazigh experts in questionnaire design -- produced results the Amazigh movement considers ideologically skewed, with advocacy groups contesting the 24.8% figure and arguing the real share of Amazigh speakers is far higher.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Ongoing Contestation in 2025–2026</div>
+      <p>Morocco's Amazigh language policy in 2025-2026 is best understood not as a settled achievement but as an ongoing site of contestation. Over 900 civil society associations are active. Youth activism has intensified. Yennayer became a national holiday. Artists and filmmakers are creating new Tamazight-language content. The UN Decade of Indigenous Languages (2022–2032) provides international scaffolding. And the legal framework. whatever its limitations, creates claimable rights that advocates continue to press in courts, in treaty-body processes, and in public argument. Whether Morocco's recognition becomes a genuine foundation for linguistic justice depends on political will and on whether Amazigh communities and allies can sustain pressure for implementation that matches the ambition of the law on paper.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ SOURCES ══════════ -->
+<div id="tab-sources" class="panel">
+  <div class="content-wrap">
+    <p class="section-label">Annotated Bibliography · 2025–2026</p>
+    <h2 class="section-title">Research & Sources</h2>
+
+    <p>The following annotated bibliography was prepared for the research paper <em>"Amazigh Language Policy and Education in Morocco: Officialization, Implementation, and the Racialization of Ethnolinguistic Belonging"</em> (Sofia Boubsis, 2026). Sources are organized by category. Annotations explain how each source contributes to the three-theme focus.</p>
+
+    <h3 class="sub-title">I. Constitutional and Legal Anchors</h3>
+
+    <div class="source-item">
+      <span class="source-num">1</span>
+      <div>
+        <strong>Constitution of the Kingdom of Morocco. (2011). Article 5.</strong> English translation via Constitute Project. <a href="https://www.constituteproject.org/constitution/Morocco_2011" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">The foundational legal document for this project: recognizes Tamazight as an official language and "common patrimony of all Moroccans" while mandating an organic law to define implementation. This dual structure, recognition paired with deferred implementation, is the legal architecture that makes the gap between formal equality and institutional practice the central analytical object. Its limitation is that it offers framework without operational detail, which is why Organic Law 26-16 and empirical implementation research are essential companions.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">2</span>
+      <div>
+        <strong>Royaume du Maroc. (2001). Dahir n° 1-01-299 portant création de l'Institut Royal de la Culture Amazighe (IRCAM).</strong> <em>Bulletin Officiel n° 4948</em>, pp. 1074–1076. <a href="https://www.sgg.gov.ma/BO/bo_fr/2001/bo_4948_fr.pdf" target="_blank" rel="noopener">Bulletin Officiel PDF</a>
+        <div class="annotation">Establishes IRCAM and pairs cultural affirmation with institutional regulation: its preamble explicitly ties Amazigh cultural promotion to the codification of Tifinagh as a prerequisite for teaching and diffusion. This positions IRCAM as both a recognition institution and a regulatory one: expanding Amazigh visibility while concentrating authority over the terms of that visibility in a royally chartered body. Foundational for the standardization theme. Limitation: defines institutional intent rather than outcomes; must be triangulated with implementation research.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">3</span>
+      <div>
+        <strong>Royaume du Maroc. (2019/2021). Loi organique n° 26-16 fixant le processus de mise en œuvre du caractère officiel de l'amazighe.</strong> <em>Bulletin Officiel n° 7000</em> (1er juillet 2021). <a href="https://amadalamazigh.press.ma/fr/wp-content/uploads/2023/06/AMAZIGHE-Loin%C2%B026-16.pdf" target="_blank" rel="noopener">Organic Law 26-16 PDF</a>
+        <div class="annotation">The single most important implementation document in this bibliography. Mandates progressive Tamazight integration across all educational levels and into administrative forms, civil registry, call centers, public signage, and the justice system. Articles 30–32 are most significant for the racialization argument: Article 31 stages entry-into-force over maximum deadlines of 5, 10, and 15 years; Article 32 requires action plans from public bodies without guaranteeing delivery. This structure allows the state to generate documentation of compliance while Amazigh speakers bear the costs of incomplete implementation. Limitation: specifies what should happen, not what has -- making implementation research and UN monitoring essential complements.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">II. International Human Rights Law and UN Monitoring</h3>
+
+    <div class="source-item">
+      <span class="source-num">4</span>
+      <div>
+        <strong>Office of the United Nations High Commissioner for Human Rights. (1965). International Convention on the Elimination of All Forms of Racial Discrimination (ICERD).</strong> <a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/international-convention-elimination-all-forms-racial" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">Provides the doctrinal bridge that makes this a race-centered project: Article 1 defines racial discrimination to include distinctions based on national or ethnic origin that impair the enjoyment of rights in public life; Article 5 explicitly includes education among protected rights. The effect-based definition is the critical contribution: a state cannot escape scrutiny by pointing to the absence of discriminatory intent when effects are systematically unequal. This allows the argument that language-based exclusion in Moroccan schooling constitutes racialization under international law. Limitation: does not specify language policy design; must be paired with Moroccan legal commitments and CERD monitoring to become operationally useful.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">5</span>
+      <div>
+        <strong>United Nations Committee on the Elimination of Racial Discrimination. (2023). Concluding observations on the combined nineteenth to twenty-first periodic reports of Morocco (CERD/C/MAR/CO/19-21).</strong> <a href="https://tbinternet.ohchr.org/_layouts/15/treatybodyexternal/TBSearch.aspx?Lang=en&TreatyID=6&DocTypeID=5" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">The project's strongest accountability source. The CERD Committee simultaneously welcomes Morocco's adoption of Organic Law 26-16 and criticizes the absence of disaggregated ethnic composition data needed to assess whether equal enjoyment of rights, including in education, is actually being achieved. This duality supports the argument that officialization can coexist with institutional invisibility when the underlying data infrastructure is absent. Also flags concerns about hate speech affecting groups including the Amazigh. Limitation: operates at high abstraction and must be paired with empirical implementation research for classroom-level grounding.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">III. Core Scholarly Literature</h3>
+
+    <div class="source-item">
+      <span class="source-num">6</span>
+      <div>
+        <strong>Almohawes, M. (2024). "Analyzing voice in language policy documents of the Moroccan government." <em>Cogent Arts & Humanities, 11</em>(1), 2349402.</strong> <a href="https://doi.org/10.1080/23311983.2024.2349402" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">Analyzes competing voices in Moroccan language policy documents and shows how constitutional language simultaneously frames Amazigh as national identity and as a liberty or rights claim. This tension matters because identity-based framing can legitimate symbolic recognition without guaranteeing operational equality; plural recognition and continued hierarchy can coexist in the same legal text. Used in the Policy tab to explain how constitutional language enables both affirmation and subordination. Limitation: discourse analysis does not directly measure classroom outcomes.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">7</span>
+      <div>
+        <strong>Buckner, E. (2006). "Language Drama in Morocco: Another Perspective on the Problems and Prospects of Teaching Tamazight." <em>The Journal of North African Studies, 11</em>(4), 421–433.</strong> <a href="https://www.tandfonline.com/doi/abs/10.1080/13629380601037518" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">Frames Amazigh language-in-education as political struggle rather than neutral pedagogy, arguing that language initiatives can be designed as legitimacy projects without building durable infrastructure that would make Amazigh a living institutional language. Directly relevant to the racialization framework: if officialization is primarily a legitimacy project, then the gap between legal promise and classroom reality is a design feature rather than an accident. Used to develop the concept of symbolic compliance versus substantive implementation, pairing Buckner's interpretation with Organic Law 26-16's staged timelines to show the same pattern institutionalized two decades later.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">8</span>
+      <div>
+        <strong>El Aissati, A., Karsmakers, S., & Kurvers, J. (2011). "'We Are All Beginners': Amazigh in Language Policy and Educational Practice in Morocco." <em>Compare: A Journal of Comparative and International Education, 41</em>(2), 211–227.</strong> <a href="https://www.tandfonline.com/doi/abs/10.1080/03057925.2011.547289" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">The project's most actionable empirical source for the implementation-as-racialization argument. Documents teacher experiences of Amazigh curriculum introduction: limited materials, restricted instructional time, limited familiarity with Tifinagh, and problematic rollout conditions. The title, borrowed from a teacher's own self-description, captures the institutional reality: teachers were expected to deliver a curriculum in a language and script they were simultaneously learning, with insufficient resources. This is not individual incompetence but systematic under-investment. Used to bridge macro-level legal commitments and micro-level classroom realities that determine whether official language status is lived or merely proclaimed.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">9</span>
+      <div>
+        <strong>Errihani, M. (2006). "Language Policy in Morocco: Problems and Prospects of Teaching Tamazight." <em>The Journal of North African Studies, 11</em>(2), 143–154.</strong> <a href="https://www.researchgate.net/publication/233305430_Language_Policy_in_Morocco_Problems_and_Prospects_of_Teaching_Tamazight" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">Documents the first phase of Amazigh schooling rollout through classroom observation in 2004–2005, providing an invaluable baseline. Its greatest value lies in what it reveals about continuity: the implementation gaps it identifies -- contested legitimacy, insufficient teacher preparation, uncertain curricular integration -- are visible from the very beginning, suggesting these are structural features of a policy that prioritized symbolic recognition over capacity-building. Used to establish the mid-2000s baseline and argue that implementation gaps have deep institutional roots predating the 2011 Constitution.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">10</span>
+      <div>
+        <strong>Flores, N., & Rosa, J. (2015). "Raciolinguistic ideologies and language diversity in education." <em>Harvard Educational Review, 85</em>(2), 149–171.</strong> <a href="https://doi.org/10.17763/0017-8055.85.2.149" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">The project's key theoretical source for connecting language and race. Flores and Rosa critique "appropriateness regimes" in education, showing how standardized language norms are entangled with racialized judgments about speakers, treating certain linguistic forms as normative and others as supplementary or in need of remediation. Adaptable to Morocco: Arabic and French structure perceptions of institutional legitimacy while Amazigh is positioned as cultural and supplementary. Used to define raciolinguistic ideology and justify why implementation gaps reflect institutional hierarchy rather than merely technical failure. Limitation: not Morocco-specific; must be grounded in Moroccan legal texts and implementation evidence.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">11</span>
+      <div>
+        <strong>Bao. (2026). <em>Language Policy and Planning of Amazigh Languages in Morocco.</em> Leiden: LOT (Netherlands Graduate School of Linguistics). [Doctoral dissertation.]</strong> <a href="https://www.lotpublications.nl/Documents/706_fulltext.pdf" target="_blank" rel="noopener">Full dissertation PDF</a>
+        <div class="annotation">The most comprehensive scholarly bridge between Morocco's Amazigh institutional texts and the ideological work those texts perform. Traces how IRCAM's founding documents and constitutional language embed ideologies of "unity and managed diversity" that shape what becomes teachable and administratively usable. Shows that choices about script and variety are not technical but deeply political, serving national unity narratives while creating internal hierarchies among speakers of different varieties. Used to connect legal texts to ideology and argue that implementation disputes are political rather than bureaucratic in nature.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">12</span>
+      <div>
+        <strong>Minority Rights Group International. (2022). <em>UPR of Morocco (41st session) Fact Sheet: Amazigh and Other Minority Rights Issues.</em></strong> <a href="https://minorityrights.org/app/uploads/2024/01/upr-morocco-factsheet-mrg.pdf" target="_blank" rel="noopener">Fact sheet PDF</a>
+        <div class="annotation">A bridge source grounded in systematic advocacy monitoring and international human rights law, making concrete claims about implementation gaps that can be triangulated with legal texts and UN observations. Characterizes Tamazight teaching as "marginalized and largely optional" despite official-language status, and identifies Organic Law 26-16's staged timelines as a concrete barrier to effective rights realization. Used cautiously as a pattern-identifying source that adds community-facing dimensions absent from purely legal or scholarly sources.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">13</span>
+      <div>
+        <strong><em>Multilingualism, Cultural Identity, and Education in Morocco.</em> (2005). New York: Springer.</strong> <a href="https://www.researchgate.net/publication/287102248_Multilingualism_Cultural_Identity_and_Education_in_Morocco" target="_blank" rel="noopener">Source link</a>
+        <div class="annotation">Situates Morocco's schooling system within its multilingual landscape and postcolonial identity politics, providing essential context for understanding why introducing Amazigh into schools is not a neutral curricular choice but requires navigating hierarchies shaped by colonial governance and post-independence Arabization. Used for language-and-education framing in the Introduction and Discussion. Primary limitation: predates the 2011 Constitution and Organic Law 26-16; functions as historical context rather than analysis of the contemporary implementation regime.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">IV. Supplementary Sources Used in This Website</h3>
+
+    <div class="source-item">
+      <span class="source-num">14</span>
+      <div>
+        <strong>IWGIA (International Work Group for Indigenous Affairs). (2024, 2025). "The Indigenous World: Morocco."</strong> <a href="https://iwgia.org/en/morocco.html" target="_blank" rel="noopener">iwgia.org</a>
+        <div class="annotation">Annual reports documenting Amazigh rights conditions in Morocco, including the 2024 census controversy, land rights erosion, and implementation delays. Used for current statistics, civil society perspectives, and the 2025–2026 status update.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">15</span>
+      <div>
+        <strong>FUNCI (Islamic Culture Foundation). "Amazigh women, guardians of language and culture."</strong> <a href="https://funci.org/amazigh-women-the-genuine-guardians-of-language-and-culture-in-morocco/" target="_blank" rel="noopener">funci.org</a>
+        <div class="annotation">Documents the gendered dimension of language preservation: rural Amazigh women as primary keepers of spoken Tamazight through oral tradition, while urban men lead public advocacy. Used in the Language & Who Speaks It section to profile speaker communities.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">16</span>
+      <div>
+        <strong>Minority Rights Group. (2023). "Revitalizing Tamazight: The role of language education policies in Morocco."</strong> <a href="https://minorityrights.org/2023/02/21/revitalizing-tamazight-the-role-of-language-education-policies-in-morocco/" target="_blank" rel="noopener">minorityrights.org</a>
+        <div class="annotation">Detailed field-based examination of teacher training, classroom implementation, and the 2022 teacher certification policy reversal. Used for the Challenges Today section's documentation of structural constraints.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">17</span>
+      <div>
+        <strong>Leeds Human Rights Journal. (2018). "The Politics of Language and the Marginality of the Amazigh of Morocco."</strong> <a href="https://hrj.leeds.ac.uk/2018/10/29/the-politics-of-language-and-the-marginality-of-the-amazigh-of-morocco/" target="_blank" rel="noopener">hrj.leeds.ac.uk</a>
+        <div class="annotation">Situates Amazigh marginalization within the politics of postcolonial identity and nationalism; used in the History of Racialization section.</div>
+      </div>
+    </div>
+
+    <div class="source-item">
+      <span class="source-num">18</span>
+      <div>
+        <strong>Morocco World News. (2024). "Morocco's Language Dilemma: Benmoussa Says 92% Speak Darija, Only 25% Amazigh."</strong> <a href="https://www.moroccoworldnews.com/2024/12/167085/moroccos-language-dilemma-benmoussa-says-92-speak-darija-only-25-amazigh/" target="_blank" rel="noopener">moroccoworldnews.com</a>
+        <div class="annotation">Covers the 2024 census controversy and Amazigh civil society responses, including AMREC's criticism of the exclusion of Amazigh experts from questionnaire design. Used for current statistics and accountability section.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>ⵉⵎⴰⵣⵉⵖⴻⵏ</span> · Imazighen: The Free People · <span>ⵜⴰⵎⴰⵣⵉⵖⵜ</span><br>
+  An educational website by Sofia Boubsis · Academic Year 2025–2026<br>
+  All sources cited above. For the full research paper, contact the author.
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.region-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.region-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      document.getElementById('region-title').textContent = card.dataset.title;
+      document.getElementById('region-text').textContent = card.dataset.text;
+    });
+  });
+
+  document.querySelectorAll('.metric-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.metric-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('metric-number').textContent = tab.dataset.number;
+      document.getElementById('metric-title').textContent = tab.dataset.title;
+      document.getElementById('metric-text').textContent = tab.dataset.text;
+      document.getElementById('metric-note').textContent = tab.dataset.note;
+      const bars = document.getElementById('dual-bars');
+      if (tab.dataset.bars === 'urban') {
+        bars.classList.add('show');
+        setTimeout(() => {
+          document.getElementById('rural-bar').style.width = '33.3%';
+          document.getElementById('urban-bar').style.width = '19.9%';
+        }, 20);
+      } else {
+        bars.classList.remove('show');
+        document.getElementById('rural-bar').style.width = '0';
+        document.getElementById('urban-bar').style.width = '0';
+      }
+    });
+  });
+</script>
+</body>
+</html>
